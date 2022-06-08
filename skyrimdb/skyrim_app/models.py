@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 
 class TypeOfDamage(models.Model):
@@ -8,11 +9,10 @@ class TypeOfDamage(models.Model):
         return self.name
 
 class DateAndTime(models.Model):
-    date = models.DateField()
-    time = models.TimeField()
+    date_time = models.DateTimeField()
 
     def __str__(self):
-        return '%s %s' % (self.date, self.time)
+        return self.date_time
 
 class Atack(models.Model):
     type_of_damage = models.ForeignKey(TypeOfDamage, on_delete=models.CASCADE)
@@ -31,6 +31,7 @@ class Character(models.Model):
     name = models.CharField(max_length=100)
     life_points = models.PositiveIntegerField()
     breed = models.CharField(max_length=100)
+    weakness = models.ForeignKey(TypeOfDamage, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -43,19 +44,21 @@ class Beast(Character):
 
 #TODO: in use field between Player and Spell
 class InUse(models.Model):
-    spell_name = models.CharField(max_length=100)
+    player = models.ForeignKey(Player, on_delete=models.DO_NOTHING, related_name='+')
+    spell = models.ForeignKey(Spell, on_delete=models.DO_NOTHING, related_name='+')
 
 class Battle(models.Model):
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)
-    date_and_time = models.ForeignKey(DateAndTime, on_delete=models.CASCADE)
-    battle_winner = models.ForeignKey(Character, on_delete=models.CASCADE)
+    character = models.ForeignKey(Character, on_delete=models.DO_NOTHING)
+    date_and_time = models.ForeignKey(DateAndTime, related_name='+', on_delete=models.DO_NOTHING)
+    # item = GenericForeignKey('date_and_time', 'character')
+    battle_winner = models.OneToOneField(Character, on_delete=models.DO_NOTHING, related_name='+')
 
 
 class Event(models.Model):
-    battle = models.ForeignKey(Battle, on_delete=models.CASCADE)
-    character_atack = models.ForeignKey(Character, on_delete=models.CASCADE)
-    character_receive_atack = models.ForeignKey(Character, on_delete=models.CASCADE)
-    date_and_time = models.ForeignKey(DateAndTime, on_delete=models.CASCADE)
+    battle = models.ForeignKey(Battle, on_delete=models.DO_NOTHING, related_name='+')
+    character_atack = models.ForeignKey(Character, on_delete=models.DO_NOTHING, related_name='+')
+    character_receive_atack = models.ForeignKey(Character, on_delete=models.DO_NOTHING, related_name='+')
+    date_and_time = models.ForeignKey(DateAndTime, on_delete=models.DO_NOTHING, related_name='+')
     #TODO: attributes
     damage_taken = 100
 

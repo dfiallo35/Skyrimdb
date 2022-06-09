@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'skyrim_app.apps.SkyrimAppConfig'
+    'skyrim_app.apps.SkyrimAppConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -44,7 +45,9 @@ ROOT_URLCONF = 'skyrimdb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

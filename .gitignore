@@ -1,0 +1,10 @@
+#Python Related
+__pycache__
+migrations
+
+#Environment
+.env
+
+#Project
+tests
+.vscode

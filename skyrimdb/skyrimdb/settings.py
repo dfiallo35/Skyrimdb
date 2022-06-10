@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'skyrim_app.apps.SkyrimAppConfig',
-    'django_filters',
 ]
 
 MIDDLEWARE = [

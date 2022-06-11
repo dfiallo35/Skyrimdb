@@ -1,6 +1,5 @@
 #Python Related
 __pycache__
-migrations
 
 #Environment
 .env

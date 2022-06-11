@@ -1,38 +1,39 @@
 {% load static %}
 
-<html lang="en">
+<html lang="en" >
 
     <head>
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Full Width Pics - Start Bootstrap Template</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        
-
-        {% comment %} <link rel="stylesheet" href="{% static "css/bootstrap1.css" %}">
-        <link rel="stylesheet" href="{% static "css/all.css" %}">
-        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
-        <link rel="stylesheet" href="{% static "css/style.css" %}"> {% endcomment %}
+        <title>Skyrim</title>
+        <link rel="icon" type="image/x-icon" href="{% static "img/skyrim-icon-41585-Windows.ico" %}" />
 
     </head>
 
-    <body>
+    <body style="background-color:#dee2e6">
 
         {% block content %}{% endblock content %}
 
 
-    <!-- Footer-->
-    <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
 
     </body>
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{% static "js/jquery.easing.min.js" %}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{% static "js/sb-admin-2.min.js" %}"></script>
 
 </html>

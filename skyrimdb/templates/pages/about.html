@@ -1,6 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
+
 {% load static %}
+
+<!-- Custom styles for this template-->
+<link href="{% static "css/sb-admin-2.css" %}" rel="stylesheet">
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="{% static "css/styles.css" %}" rel="stylesheet" />
@@ -8,17 +12,75 @@
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#!">Start Bootstrap</a>
+        <a class="navbar-brand" href="https://elderscrolls.bethesda.net/">Skyrim</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Tables</a></li>
+                <li class="nav-item"><a class="nav-link"  href="{% url 'home' %}">Home</a></li>
+                
+                <div class="small mb-1"></div>
+                <div class="dropdown mb-4">
+                    <button class="btn btn-primary dropdown-toggle" style="background-color:#343a40" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Tables </button>
+                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'character' %}">Character Table</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+                
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'about' %}">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
+
+<!-- Page Content-->
+<div class="container px-4 px-lg-5">
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static "img/kisspng-the-elder-scrolls-v-skyrim-u2013-dragonborn-video-the-elder-scrolls-v-skyrim-transparent-png-5a756502039a19.8796293015176430100148.png" %}" alt="..." /></div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Web Do</h1>
+            <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+            <a class="btn btn-primary" href="#!">Call to Action!</a>
+        </div>
+    </div>
+    <!-- Call to Action-->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
+    </div>
+    <!-- Content Row-->
+    <div class="row gx-4 gx-lg-5">
+        <div class="col-md-4 mb-5">
+            <img src="{% static "img/7ade060872b97c7f2437a32aae53cfed.jpg" %}" class="img-fluid rounded-start">
+            <div class="card h-50">
+                <div class="card-body">
+                    <h2 class="card-title">Dennis Fiallo</h2>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-5">
+            <img src="{% static "img/14480204-1455656483.jpg" %}" class="img-fluid rounded-start">
+            <div class="card h-50">
+                <div class="card-body">
+                    <h2 class="card-title">Lauren Guerra</h2>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-5">
+            <img src="{% static "img/4356559-1354127399.jpg" %}" class="img-fluid rounded-start">
+            <div class="card h-50">
+                <div class="card-body">
+                    <h2 class="card-title">Gabriel Hernández</h2>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

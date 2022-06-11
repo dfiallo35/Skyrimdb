@@ -2,6 +2,8 @@
 
 {% load static %}
 
+<link href="{% static "css/all.css" %}" rel="stylesheet">
+
 <!-- Custom styles for this template-->
 <link href="{% static "css/sb-admin-2.css" %}" rel="stylesheet">
 
@@ -31,6 +33,7 @@
                 
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
             </ul>
         </div>
     </div>
@@ -39,7 +42,7 @@
 
 
 <!-- Header - set the background image for the header in the line below-->
-<header class="py-5 bg-image-full" style="background-image: url({% static "img/a2.jpg" %})">
+<header class="py-5 bg-image-full" style="background-image: url({% static "img/contact_image_1.jpg" %})">
     <br>
     <br>
     <br>
@@ -53,25 +56,35 @@
     
 </header>
 
-
-
 <div class="container px-4 px-lg-5">
     <!-- Heading Row-->
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
-        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static "img/kisspng-the-elder-scrolls-v-skyrim-dragonborn-clip-ar-allie-plays-skyrim-uthgerds-horse-but-no-uth-5b8842f8876424.6474417115356566965546.png" %}" alt="..." /></div>
+        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static "img/contact_image_2.png" %}" alt="..." /></div>
         <div class="col-lg-5">
             <h1 class="font-weight-light">You can find us at</h1>
 
-            <div class="container">
-                <a href="#" class="btn btn-primary btn-circle btn-lg">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                
-                <a href="#" class="btn btn-primary btn-circle btn-lg">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </div>
-            
+            <a href="https://www.reddit.com/r/BethesdaSoftworks/" class="btn btn-primary btn-circle btn-lg">
+                <i class="fab fa-reddit"></i>
+            </a>
+            <a href="https://www.tumblr.com/tagged/elderscrolls" class="btn btn-primary btn-circle btn-lg">
+                <i class="fab fa-tumblr"></i>
+            </a>
+            <a href="https://twitter.com/elderscrolls" class="btn btn-primary btn-circle btn-lg">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.youtube.com/user/BethesdaSoftworks" class="btn btn-primary btn-circle btn-lg">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.twitch.tv/bethesda" class="btn btn-primary btn-circle btn-lg">
+                <i class="fab fa-twitch"></i>
+            </a>
+            <a href="https://www.facebook.com/ElderScrolls/" class="btn btn-primary btn-circle btn-lg">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/elderscrolls/" class="btn btn-primary btn-circle btn-lg">
+                <i class="fab fa-instagram"></i>
+            </a>
+
         </div>
     </div>
 </div>

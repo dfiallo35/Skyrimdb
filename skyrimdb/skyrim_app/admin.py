@@ -1,14 +1,13 @@
 from django.contrib import admin
 from .models import *
 
-#TODO: Fix Admin registration (if needed)
+# TODO: Fix Admin registration (if needed)
 # class CharacterAd(admin.ModelAdmin):
 #     list_display = ('name', 'life_points', 'breed', 'weakness',)
 # class PlayerAd(admin.ModelAdmin):
 #     list_display = ('name', 'life_points', 'breed', 'weakness')
 # class BeastAd(admin.ModelAdmin):
 #     list_display = ('name', 'life_points', 'breed', 'weakness')
-
 
 
 # class AttackAd(admin.ModelAdmin):
@@ -44,7 +43,17 @@ from .models import *
 # class DateAndTimeAd(admin.ModelAdmin):
 #     list_display = ('date_time',)
 
+admin.site.register(DamageType)
+admin.site.register(Race)
 
+admin.site.register(Attack)
+admin.site.register(Spell)
+
+admin.site.register(Player)
+admin.site.register(Beast)
+
+admin.site.register(Battle)
+admin.site.register(Event)
 
 # admin.site.register(Character, CharacterAd)
 # admin.site.register(Player, PlayerAd)
@@ -68,4 +77,3 @@ from .models import *
 # admin.site.register(Event, EventAd)
 
 # admin.site.register(Breed, BreedAd)
-

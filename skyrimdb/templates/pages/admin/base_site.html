@@ -1,16 +1,15 @@
-{% extends 'base.html' %} {% block content %}
-
-
+{% extends 'admin/base.html' %} 
 {% load static %}
 
-<!-- Responsive navbar-->
+{% block nav-global %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <h1 class="fs-1 text-white">Skyrim in Stats</h1>
+        <a class="navbar-brand" href="https://elderscrolls.bethesda.net/">Skyrim</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link"  href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
                 
                 <div class="small mb-1"></div>
                 <div class="dropdown mb-4">
@@ -31,6 +30,5 @@
     </div>
 </nav>
 
-{% block content_tables %}{% endblock content_tables %}
+{% endblock%} 
 
-{% endblock content %}

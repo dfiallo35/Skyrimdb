@@ -1,12 +1,3 @@
-# from .model.attack import *
-# from .model.battle import *
-# from .model.breed import *
-# from .model.character import *
-# from .model.dateandtime import *
-# from .model.event import *
-# from .model.typeofdamage import *
-# NOTE: This comments are the old models
-
 from django.db import models
 
 
@@ -143,8 +134,8 @@ class Battle(models.Model):
     def __str__(self):
         duration = self.events.latest().time-self.start
         return ''.join([
-            f"{str(self.start)} battle with winner:",
-            f"{self.winner.name} and duration:{str(duration)}"
+            f"{str(self.start)} - battle with winner ",
+            f"{self.winner.name} and duration {str(duration)}"
         ])
 
     class Meta:

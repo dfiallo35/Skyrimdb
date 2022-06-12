@@ -16,6 +16,7 @@ class Race(models.Model):
     class Meta:
         verbose_name = ("Race")
         verbose_name_plural = ("Races")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -27,6 +28,7 @@ class DamageType(models.Model):
     class Meta:
         verbose_name = ("Damage Type")
         verbose_name_plural = ("damage types")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -41,12 +43,14 @@ class Character(models.Model):
     weakness = models.ForeignKey(DamageType, verbose_name="Weakness",
                                  on_delete=models.PROTECT,
                                  related_name="%(class)ss",
-                                 related_query_name="%(class)ss_with_weakness")
+                                 related_query_name="%(class)ss_with_weakness",
+                                 blank=True, null=True)
     hp = models.PositiveIntegerField("Current Hit Points")
 
     class Meta:
         verbose_name = ("Character")
         verbose_name_plural = ("Characters")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -63,6 +67,7 @@ class Attack(models.Model):
     class Meta:
         verbose_name = ("Attack")
         verbose_name_plural = ("Attacks")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -73,6 +78,7 @@ class Spell(Attack):
     class Meta:
         verbose_name = ("Spell")
         verbose_name_plural = ("Spells")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -81,23 +87,28 @@ class Spell(Attack):
 class Player(Character):
     spells_known = models.ManyToManyField(Spell, verbose_name="Spells Known",
                                           related_name="%(class)ss",
-                                          related_query_name="%(class)ss_with")
+                                          related_query_name="%(class)ss_with",
+                                          blank=True)
     spell_slot1 = models.ForeignKey(Spell, on_delete=models.PROTECT,
                                     verbose_name="Spell in use in Slot 1",
                                     related_name="%(class)ss_1",
-                                    related_query_name="%(class)ss_in_slot1")
+                                    related_query_name="%(class)ss_in_slot1",
+                                    blank=True, null=True)
     spell_slot2 = models.ForeignKey(Spell, on_delete=models.PROTECT,
                                     verbose_name="Spell in use in Slot 2",
                                     related_name="%(class)ss_2",
-                                    related_query_name="%(class)ss_in_slot2")
+                                    related_query_name="%(class)ss_in_slot2",
+                                    blank=True, null=True)
     spell_slot3 = models.ForeignKey(Spell, on_delete=models.PROTECT,
                                     verbose_name="Spell in use in Slot 3",
                                     related_name="%(class)ss_3",
-                                    related_query_name="%(class)ss_in_slot3")
+                                    related_query_name="%(class)ss_in_slot3",
+                                    blank=True, null=True)
 
     class Meta:
         verbose_name = ("Player")
         verbose_name_plural = ("Players")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -106,11 +117,13 @@ class Player(Character):
 class Beast(Character):
     attacks = models.ManyToManyField(Attack, verbose_name="Attacks",
                                      related_name="%(class)ss",
-                                     related_query_name="%(class)ss_with")
+                                     related_query_name="%(class)ss_with",
+                                     blank=True)
 
     class Meta:
         verbose_name = ("Beast")
         verbose_name_plural = ("Beasts")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -127,9 +140,18 @@ class Battle(models.Model):
                                related_name="%(class)ss_win",
                                related_query_name="%(class)ss_won")
 
+    def __str__(self):
+        duration = self.events.latest().time-self.start
+        return ''.join([
+            f"{str(self.start)} battle with winner:",
+            f"{self.winner.name} and duration:{str(duration)}"
+        ])
+
     class Meta:
         verbose_name = ("Battle")
         verbose_name_plural = ("Battles")
+        get_latest_by = "start"
+        ordering = ["-start"]
 
 
 class Event(models.Model):
@@ -146,7 +168,17 @@ class Event(models.Model):
                                 related_name="%(class)ss_damage",
                                 related_query_name="%(class)s")
     damage = models.PositiveIntegerField(verbose_name="Damage Inflicted")
+    attack = models.ForeignKey(Attack, on_delete=models.PROTECT,
+                               verbose_name="Attack",
+                               related_name="%(class)ss",
+                               related_query_name="%(class)ss_with")
+
+    def __str__(self):
+        return f"At {str(self.time)} " +\
+            f"{self.attacker.name} used {self.attack.name} on {self.damaged.name}"
 
     class Meta:
         verbose_name = ("Event")
         verbose_name_plural = ("Events")
+        get_latest_by = "time"
+        ordering = ["time"]

@@ -1969,7 +1969,7 @@ progress {
   margin-bottom: 1rem;
   color: #212529;
   vertical-align: top;
-  border-color: #dee2e6;
+  border-color: #ced4da;
 }
 .table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
@@ -2193,7 +2193,7 @@ progress {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #fff;
+  background-color: #f8f9fa;
   background-clip: padding-box;
   border: 1px solid #ced4da;
   -webkit-appearance: none;
@@ -4512,9 +4512,9 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #e9ecef;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid rgba(0, 0, 0, 0.325);
   border-radius: 0.25rem;
 }
 .card > hr {
@@ -4832,14 +4832,14 @@ textarea.form-control-lg {
 }
 .page-item.active .page-link {
   z-index: 3;
-  color: #fff;
-  background-color: #0d6efd;
+  color: #000;
+  background-color: #f8f9fa;
   border-color: #0d6efd;
 }
 .page-item.disabled .page-link {
-  color: #6c757d;
+  color: #000;
   pointer-events: none;
-  background-color: #fff;
+  background-color: #f8f9fa;
   border-color: #dee2e6;
 }
 
@@ -7597,6 +7597,7 @@ textarea.form-control-lg {
 
 .fs-0 {
   font-size: calc(3rem + 3vw) !important;
+  -webkit-text-stroke: 0.5px #000;
 }
 
 .fs-1 {
@@ -7720,7 +7721,7 @@ textarea.form-control-lg {
 /* rtl:end:remove */
 .text-primary {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+  color: #6c757d !important;
 }
 
 .text-secondary {

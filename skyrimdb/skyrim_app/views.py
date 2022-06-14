@@ -91,7 +91,7 @@ def contact(request):
 def players(request):
     return render(request,
                   'pages/tables_pages/players.html',
-                  {'battles': (p for p in fetch_players())})
+                  {'players': (p for p in fetch_players())})
 
 
 def battles(request):
@@ -103,10 +103,10 @@ def battles(request):
 def beasts(request):
     return render(request,
                   'pages/tables_pages/beasts.html',
-                  {'battles': (b for b in fetch_beasts())})
+                  {'players': (b for b in fetch_beasts())})
 
 
 def spells(request):
     return render(request,
                   'pages/tables_pages/spells.html',
-                  {'battles': (s for s in fetch_spells())})
+                  {'players': (s for s in fetch_spells())})

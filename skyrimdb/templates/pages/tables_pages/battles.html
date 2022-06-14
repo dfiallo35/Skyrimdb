@@ -50,91 +50,17 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2008/11/28</td>
-                            <td>10</td>
-                            <td>610</td>
-                            <td>Ralof</td>
-                        </tr>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2018/01/18</td>
-                            <td>36</td>
-                            <td>1340</td>
-                            <td>Aela the Huntress</td>
-                        </tr>
-                        <tr>
-                            <td>Bagrak, Aela the Huntress, Ralof</td>
-                            <td>2020/03/25</td>
-                            <td>54</td>
-                            <td>2300</td>
-                            <td>Bagrak</td>
-                        </tr>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2008/11/28</td>
-                            <td>10</td>
-                            <td>610</td>
-                            <td>Ralof</td>
-                        </tr>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2018/01/18</td>
-                            <td>36</td>
-                            <td>1340</td>
-                            <td>Aela the Huntress</td>
-                        </tr>
-                        <tr>
-                            <td>Bagrak, Aela the Huntress, Ralof</td>
-                            <td>2020/03/25</td>
-                            <td>54</td>
-                            <td>2300</td>
-                            <td>Bagrak</td>
-                        </tr>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2008/11/28</td>
-                            <td>10</td>
-                            <td>610</td>
-                            <td>Ralof</td>
-                        </tr>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2018/01/18</td>
-                            <td>36</td>
-                            <td>1340</td>
-                            <td>Aela the Huntress</td>
-                        </tr>
-                        <tr>
-                            <td>Bagrak, Aela the Huntress, Ralof</td>
-                            <td>2020/03/25</td>
-                            <td>54</td>
-                            <td>2300</td>
-                            <td>Bagrak</td>
-                        </tr>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2008/11/28</td>
-                            <td>10</td>
-                            <td>610</td>
-                            <td>Ralof</td>
-                        </tr>
-                        <tr>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>2018/01/18</td>
-                            <td>36</td>
-                            <td>1340</td>
-                            <td>Aela the Huntress</td>
-                        </tr>
-                        <tr>
-                            <td>Bagrak, Aela the Huntress, Ralof</td>
-                            <td>2020/03/25</td>
-                            <td>54</td>
-                            <td>2300</td>
-                            <td>Bagrak</td>
-                        </tr>
-                        
+                        {% for battle in battles%}
+
+                            <tr>
+                                <td>{{Battle.participants}}</td>
+                                <td>{{battle.start}}</td>
+                                <td>{{battle.n_events}}</td>
+                                <td>{{battle.total_d}}</td>
+                                <td>{{battle.winner}}</td>
+                            </tr>
+
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

@@ -50,102 +50,16 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        {% for spell in spells %}
                         <tr>
-                            <td>Fire storm</td>
-                            <td>85</td>
-                            <td>Fire</td>
-                            <td>Bagrak, Ralof</td>
-                            <td>Ralof</td>
-                            <td>3</td>
+                            <td>{{spell.name}}</td>
+                            <td>{{spell.avg_d}}</td>
+                            <td>{{spell.type}}</td>
+                            <td>{{spell.knows}}</td>
+                            <td>{{spell.uses}}</td>
+                            <td>{{spell.n_battles}}</td>
                         </tr>
-                        <tr>
-                            <td>Fire rune</td>
-                            <td>70</td>
-                            <td>Fire</td>
-                            <td>Aela the Huntress</td>
-                            <td>Aela the Huntress</td>
-                            <td>1</td>
-                        </tr> 
-                        <tr>
-                            <td>Frost Rune</td>
-                            <td>70</td>
-                            <td>Frost</td>
-                            <td>Bagrak, Aela the Huntress, Ralof</td>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>13</td>
-                        </tr> 
-                        <tr>
-                            <td>Ice storm</td>
-                            <td>75</td>
-                            <td>Frost</td>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>Aela the Huntress</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>Fire storm</td>
-                            <td>85</td>
-                            <td>Fire</td>
-                            <td>Bagrak, Ralof</td>
-                            <td>Ralof</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Fire rune</td>
-                            <td>70</td>
-                            <td>Fire</td>
-                            <td>Aela the Huntress</td>
-                            <td>Aela the Huntress</td>
-                            <td>1</td>
-                        </tr> 
-                        <tr>
-                            <td>Frost Rune</td>
-                            <td>70</td>
-                            <td>Frost</td>
-                            <td>Bagrak, Aela the Huntress, Ralof</td>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>13</td>
-                        </tr> 
-                        <tr>
-                            <td>Ice storm</td>
-                            <td>75</td>
-                            <td>Frost</td>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>Aela the Huntress</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>Fire storm</td>
-                            <td>85</td>
-                            <td>Fire</td>
-                            <td>Bagrak, Ralof</td>
-                            <td>Ralof</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Fire rune</td>
-                            <td>70</td>
-                            <td>Fire</td>
-                            <td>Aela the Huntress</td>
-                            <td>Aela the Huntress</td>
-                            <td>1</td>
-                        </tr> 
-                        <tr>
-                            <td>Frost Rune</td>
-                            <td>70</td>
-                            <td>Frost</td>
-                            <td>Bagrak, Aela the Huntress, Ralof</td>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>13</td>
-                        </tr> 
-                        <tr>
-                            <td>Ice storm</td>
-                            <td>75</td>
-                            <td>Frost</td>
-                            <td>Aela the Huntress, Ralof</td>
-                            <td>Aela the Huntress</td>
-                            <td>6</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

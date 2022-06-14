@@ -55,43 +55,18 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>Paarthurnax</td>
-                            <td>Dragon</td>
-                            <td>Close Wounds,
-                                Fast Healing,
-                                Fireball,
-                                Firebolt,
-                                Ice Spike</td>
-                            <td>Poison</td>
-                            <td>495</td>
-                            <td>305</td>
-                            <td>1</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Alduin</td>
-                            <td>Dragon</td>
-                            <td>Fire Breath,
-                                Frost Breath,
-                                Unrelenting Force,
-                                Dragon Fireball shout</td>
-                            <td>Fire</td>
-                            <td>2355</td>
-                            <td>1250</td>
-                            <td>4</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>Durnehviir</td>
-                            <td>Dragon</td>
-                            <td>Poison spit attack</td>
-                            <td>fire</td>
-                            <td>253</td>
-                            <td>530</td>
-                            <td>5</td>
-                            <td>5</td>
-                        </tr>
+                        {% for beast in beasts %}
+                            <tr>
+                                <td>{{beast.name}}</td>
+                                <td>{{beast.race}}</td>
+                                <td>{{beast.attacks}}</td>
+                                <td>{{beast.weakness}}</td>
+                                <td>{{beast.hp}}</td>
+                                <td>{{beast.damage_out}}</td>
+                                <td>{{beast.n_battles}}</td>
+                                <td>{{beast.n_players}}</td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

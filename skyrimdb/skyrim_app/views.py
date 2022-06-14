@@ -103,10 +103,10 @@ def battles(request):
 def beasts(request):
     return render(request,
                   'pages/tables_pages/beasts.html',
-                  {'players': (b for b in fetch_beasts())})
+                  {'beasts': (b for b in fetch_beasts())})
 
 
 def spells(request):
     return render(request,
                   'pages/tables_pages/spells.html',
-                  {'players': (s for s in fetch_spells())})
+                  {'spells': (s for s in fetch_spells())})

@@ -71,12 +71,16 @@ class EventForm(ModelForm):
         try_beast = Beast.objects.filter(id=attacker.id)
         try_player = Player.objects.filter(id=attacker.id)
 
-        # TODO: Validate attacks
         if len(try_beast) > 0:
             attacker: Beast = try_beast[0]
-            # if attack not in attacker.attacks.all():
+            if attack not in attacker.attacks.all():
+                errors['attack'] = ValidationError(
+                    'The Beast attacking doesn\'t know the attack selected')
         else:
             attacker: Player = try_player[0]
+            if attack not in attacker.spells_known.all():
+                errors['attack'] = ValidationError(
+                    'The Player attacking doesn\'t know the spell selected')
 
         # TODO: Validate damage done
 

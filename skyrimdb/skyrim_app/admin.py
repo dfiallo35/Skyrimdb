@@ -50,7 +50,7 @@ class PlayerModelAdmin(admin.ModelAdmin):
 
 
 @admin.display(description='Attacks',)
-def player_spells(obj: Beast):
+def beast_attacks(obj: Beast):
     attacks = []
     for a in obj.attacks.all().values('pk', 'name'):
         text = a['name']
@@ -62,7 +62,7 @@ def player_spells(obj: Beast):
 class BeastModelAdmin(admin.ModelAdmin):
     filter_horizontal = ('attacks',)
     search_fields = ['name', 'race__name']
-    list_display = ('__str__', 'race', 'weakness', 'hp', player_spells)
+    list_display = ('__str__', 'race', 'weakness', 'hp', beast_attacks)
     list_filter = ('race', 'weakness', 'attacks')
 
 

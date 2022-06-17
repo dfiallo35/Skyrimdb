@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db.models import Sum, Q
+from django.db.models import Sum, Q, Count
 from . import utils
 from . import models as m
 
@@ -116,8 +116,45 @@ def fetch_spells():
         yield d
 
 
+def fetch_home():
+    bp = m.Player.objects.annotate(bw=Count('battles_won')).values(
+        'bw', 'name').order_by('-bw')[0]
+    bb = m.Beast.objects.annotate(bw=Count('battles_won')).values(
+        'race__name', 'name', 'bw').order_by('-bw')[0]
+    bs = m.Spell.objects.annotate(kw=Count('players_with')).values(
+        'name', 'average_dmg', 'kw').order_by('-kw')[0]
+    d = {
+        # #= *best_player* gives the player with the most battles won
+        'best_player': {
+            # #= *name* gives the name of the player
+            'name': bp['name'],
+            # #= *battles* gives the number of battles won
+            'battles': bp['bw']
+        },
+        # #= *best_beast* gives the beast with the most battles won
+        'best_beast': {
+            # #= *name* gives the name of the beast
+            'name': bb['name'],
+            # #= *battles* gives the number of battles won
+            'battles': bb['bw'],
+            # #= *race* gives the name of the race
+            'race': bb['race__name']
+        },
+        # #= *best_spell* gives the spell most known by the players
+        'best_spell': {
+            # #= *name* gives the name of the spell
+            'name': bs['name'],
+            # #= *average_d* gives the average damage of the spell
+            'average_d': bs['average_dmg'],
+            # #= *known* gives the number of players that knows the spell
+            'known': bs['kw']
+        }
+    }
+    return d
+
+
 def home(request):
-    return render(request, 'pages/home.html')
+    return render(request, 'pages/home.html', fetch_home())
 
 
 def about(request):

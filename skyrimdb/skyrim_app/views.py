@@ -7,6 +7,7 @@ from . import models as m
 def fetch_battles():
     for b in m.Battle.objects.all():
         p = ', '.join(utils.get_participants(b))
+        t_dam = b.events.aggregate(Sum('damage'))['damage__sum']
         d = {
             # Stores data from usual Battle entity and extra
             # #= *start* gives the star date
@@ -16,7 +17,7 @@ def fetch_battles():
             # #= *n_events* gives the number of events in a Battle
             'n_events': b.events.count(),
             # #= *total_d* gives the total damage of events in a battle
-            'total_d': b.events.aggregate(Sum('damage'))['damage__sum'],
+            'total_d': 0 if t_dam is None else t_dam,
             # #= *participants* gives a string with the names of participants with comma between each one
             'participants': p if p != '' else 'None'
         }
@@ -62,7 +63,6 @@ def fetch_beasts():
     for b in m.Beast.objects.all():
         attacks = ', '.join(
             (name for name in utils.get_attacks(b)))
-        d_in = b.events_damage.aggregate(Sum('damage'))['damage__sum']
         d_out = b.events_attack.aggregate(Sum('damage'))['damage__sum']
         bat = b.battles.values('pk')
         # faced = m.Player.objects.filter(pk__in=Subquery(bat))
@@ -82,7 +82,7 @@ def fetch_beasts():
             'attacks': attacks,
             # #= *damage_out* gives the total damage made by the beast in all
             # his battles
-            'damage_out': d_out,
+            'damage_out': d_out if d_out is not None else 0,
             # #= *n_battles* gives the number of battles the beast
             'n_battles': bat.count(),
             # #= *n_players* number of players faced by the beast
@@ -93,10 +93,9 @@ def fetch_beasts():
 
 def fetch_spells():
     for s in m.Spell.objects.all():
-        p_k = ', '.join((p['name'] for p in s.players.values('name')))
-        p_u = ', '.join((p['name'] for p in (m.Player.objects.filter(
-            Q(spell_slot1=s.pk) | Q(spell_slot2=s.pk) |
-            Q(spell_slot3=s.pk)).values('name'))))
+        p_k = s.players.count()
+        p_u = m.Player.objects.filter(Q(spell_slot1=s.pk) | Q(spell_slot2=s.pk)
+                                      | Q(spell_slot3=s.pk)).count()
         d = {
             # Stores data from usual Spell entity and extra
             # #= *name* gives the name of the spell
@@ -105,12 +104,12 @@ def fetch_spells():
             'avg_d': s.average_dmg,
             # #= *type* gives the name of the damage type it deals
             'type': s.type.name,
-            # #= *knows* gives the list of all players that knows the spell with
+            # #= *knows* gives the count of all players that knows the spell with
             # a comma between them
-            'knows': p_k if p_k != '' else 'None',
-            # #= *uses* gives the list of all players that are using the spell with
+            'knows': p_k,
+            # #= *uses* gives the count of all players that are using the spell with
             # a comma between them
-            'uses': p_u if p_u != '' else 'None',
+            'uses': p_u,
             # #= *n_battles* gives the number of battles the spell has been used
             'n_battles': s.events.values('battle').count(),
         }

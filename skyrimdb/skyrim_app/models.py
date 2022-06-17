@@ -132,7 +132,8 @@ class Battle(models.Model):
                                related_query_name="%(class)ss_won")
 
     def __str__(self):
-        duration = self.events.latest().time-self.start
+        duration = (self.start if self.events.count() ==
+                    0 else self.events.latest().time)-self.start
         return ''.join([
             f"{str(self.start)} - battle with winner ",
             f"{self.winner.name} and duration {str(duration)}"

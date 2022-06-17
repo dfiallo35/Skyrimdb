@@ -1,6 +1,8 @@
+from typing import List, Tuple
 from django.contrib import admin
 from .models import *
 from .forms import BattleForm, EventForm, PlayerForm
+from .utils import *
 from django.utils.html import format_html
 
 admin.site.empty_value_display = '(None)'
@@ -24,21 +26,11 @@ class AttackAdmin(admin.ModelAdmin):
 
 @admin.display(description='Spells',)
 def player_spells(obj: Player):
-    spells = []
-    for spell in obj.spells_known.all().values('pk', 'name'):
-        text = spell['name']
-        if obj.spell_slot1 is not None:
-            if spell['pk'] == obj.spell_slot1.pk:
-                text += ' [U]'
-        if obj.spell_slot2 is not None:
-            if spell['pk'] == obj.spell_slot2.pk:
-                text += ' [U]'
-        if obj.spell_slot3 is not None:
-            if spell['pk'] == obj.spell_slot3.pk:
-                text += ' [U]'
-        spells.append(text)
+    spells = get_spells(obj)
 
-    return format_html('<br/>'.join(spells))
+    return format_html('<br/>'.join(
+        (name if not use else name+' [U]' for name, use in spells)
+    ))
 
 
 class PlayerModelAdmin(admin.ModelAdmin):
@@ -51,10 +43,7 @@ class PlayerModelAdmin(admin.ModelAdmin):
 
 @admin.display(description='Attacks',)
 def beast_attacks(obj: Beast):
-    attacks = []
-    for a in obj.attacks.all().values('pk', 'name'):
-        text = a['name']
-        attacks.append(text)
+    attacks = get_attacks(obj)
 
     return format_html('<br/>'.join(attacks))
 
@@ -68,7 +57,8 @@ class BeastModelAdmin(admin.ModelAdmin):
 
 @admin.display(description='Participants',)
 def battle_participants(obj: Battle):
-    return format_html('<br/>'.join((p['name'] for p in obj.participants.all().values('name'))))
+    l = get_participants(obj)
+    return format_html('<br/>'.join(l))
 
 
 class BattleModelAdmin(admin.ModelAdmin):

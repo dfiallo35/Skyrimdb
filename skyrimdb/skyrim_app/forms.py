@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Dict
+from typing import Any, Dict, Mapping, Optional
 from django.forms import ModelForm, ValidationError
 from .models import *
 
@@ -60,11 +60,11 @@ class EventForm(ModelForm):
             errors['time'] = ValidationError(
                 'One event on a battle can\'t occur before the battle start')
 
-        if attacker not in battle.participants.all():
+        if (attacker.pk,) not in battle.participants.values_list('pk'):
             errors['attacker'] = ValidationError(
                 'The attacker in an event must be one of the participants of the battle it occurs')
 
-        if damaged not in battle.participants.all():
+        if (damaged.pk,) not in battle.participants.values_list('pk'):
             errors['damaged'] = ValidationError(
                 'The damaged in an event must be one of the participants of the battle it occurs')
 
@@ -73,17 +73,27 @@ class EventForm(ModelForm):
 
         if len(try_beast) > 0:
             attacker: Beast = try_beast[0]
-            if attack not in attacker.attacks.all():
+            if (attack.pk,) not in attacker.attacks.values_list('pk'):
                 errors['attack'] = ValidationError(
-                    'The Beast attacking doesn\'t know the attack selected')
+                    'The Beast attacking doesn\'t have the attack selected')
         else:
             attacker: Player = try_player[0]
-            if attack not in attacker.spells_known.all():
+            if (attack.pk,) not in attacker.spells_known.values_list('pk'):
                 errors['attack'] = ValidationError(
                     'The Player attacking doesn\'t know the spell selected')
 
-        # TODO: Validate damage done
-
+        if attack is not None and damaged is not None:
+            avg = attack.average_dmg
+            extra = 100 if damaged.weakness is not None and \
+                damaged.weakness == attack.type else 0
+            min = (avg*95+99)//100 + extra
+            max = (avg*105)//100 + extra
+            if (damage < min or damage > max):
+                first_text = f'The damage should be between the 95%({min-extra}) and 105%' + \
+                    f'({max-extra}) of the average damage of the attack'
+                second_text = (f' (plus 100 extra for beeing the type of the attack({attack.type.name}) ' +
+                               f'the weakness of the damaged)') if extra > 0 else ''
+                errors['damage'] = ValidationError(first_text+second_text)
+        if len(errors) > 0:
+            raise ValidationError(errors)
         return cleaned_data
-
-# TODO: Rest of validation

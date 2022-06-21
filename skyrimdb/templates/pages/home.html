@@ -15,10 +15,10 @@
                 <div class="dropdown mb-4">
                     <button class="btn btn-secondary dropdown-toggle" style="background-color:#343a40" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Tables </button>
                     <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{% url 'battles' %}">Battles Table</a>
-                        <a class="dropdown-item" href="{% url 'beasts' %}">Beasts Table</a>
-                        <a class="dropdown-item" href="{% url 'players' %}">Players Table</a>
-                        <a class="dropdown-item" href="{% url 'spells' %}">Spells Table</a>
+                        <a class="dropdown-item" href="{% url 'battles' %}">Battles</a>
+                        <a class="dropdown-item" href="{% url 'beasts' %}">Beasts</a>
+                        <a class="dropdown-item" href="{% url 'players' %}">Players</a>
+                        <a class="dropdown-item" href="{% url 'spells' %}">Spells</a>
                     </div>
                 </div>
                 
@@ -35,7 +35,7 @@
     <div class="text-center my-5">
         <img class="img-fluid rounded-circle mb-4" src="{% static "img/home_image_2.png" %}" alt="..." />
         <h1 class="text-white fs-1 fw-bolder">Skyrim in Stats</h1>
-        <p class="text-white-50 mb-0">Website to search for statistics of characters and battles of the skyrim game.</p>
+        <p class="text-white-50 mb-0">Where you can join the bests</p>
     </div>
 </header>
 
@@ -44,8 +44,8 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <h1 class="fs-1">Relevance data collected</h1>
-                <p class="lead">They are a set of data collected from Skyrim where you can see some elements with the best statistics in the game.</p>
+                <h1 class="fs-1">Best among the best</h1>
+                <p class="lead">The spell everyone trust, the deadliest beast of all Tamriel and the Divine's gifted player. See it right here.</p>
             </div>
         </div>
     </div>
@@ -136,7 +136,7 @@
         <div class="card-body">
             <h4 class="card-title text-white">Spell most known by players</h4>
             <h6 class="card-text text-white">Name: {{best_spell.name}}</h6>
-            <h6 class="card-text text-white">AVG Damage: {{best_spell.average_d}}</h6>
+            <h6 class="card-text text-white">Average Damage: {{best_spell.average_d}}</h6>
             <h6 class="card-text text-white">Known by: {{best_spell.known}}</h6>
             <p class="card-text text-white"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>

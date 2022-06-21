@@ -159,11 +159,11 @@ class Event(models.Model):
                                 verbose_name="Damaged in Event",
                                 related_name="%(class)ss_damage",
                                 related_query_name="%(class)s")
-    damage = models.PositiveIntegerField(verbose_name="Damage Inflicted")
     attack = models.ForeignKey(Attack, on_delete=models.PROTECT,
                                verbose_name="Attack",
                                related_name="%(class)ss",
                                related_query_name="%(class)ss_with")
+    damage = models.PositiveIntegerField(verbose_name="Damage Inflicted")
 
     def __str__(self):
         return f"At {str(self.time)} " +\

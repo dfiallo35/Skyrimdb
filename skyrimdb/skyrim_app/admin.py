@@ -7,8 +7,6 @@ from django.utils.html import format_html
 
 admin.site.empty_value_display = '(None)'
 
-# TODO: Improve filtering
-
 
 class DamageTypeAdmin(admin.ModelAdmin):
     search_fields = ['name']
@@ -65,7 +63,7 @@ class BattleModelAdmin(admin.ModelAdmin):
     form = BattleForm
     date_hierarchy = 'start'
     filter_horizontal = ('participants',)
-    search_fields = ['winner__name']  # TODO: Search in participants
+    search_fields = ['winner__name']
     list_display = ('__str__', 'start', 'winner', battle_participants)
     list_filter = ('winner', 'participants')
 

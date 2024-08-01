@@ -15,4 +15,5 @@ python skyrimdb/manage.py runserver
 ## Admin Access
 
 Username: manager
+
 Password: 1234

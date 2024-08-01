@@ -1,4 +1,4 @@
-# Skyrim_data_base
+# Skyrimdb
  
 ## Set-up
 

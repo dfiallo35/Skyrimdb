@@ -61,7 +61,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'skyrimdb.wsgi.application'
+WSGI_APPLICATION = 'skyrimdb.wsgi.app'
 
 
 # Database

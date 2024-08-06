@@ -6,5 +6,8 @@ pip install setuptools
 pip install -r requirements.txt
 
 echo "Make Migration..."
-python3.9 manage.py makemigrations
-python3.9 manage.py migrate
+python3.12 manage.py makemigrations
+python3.12 manage.py migrate
+
+echo "Collect Static..."
+python3.12 manage.py collectstatic

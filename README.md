@@ -9,7 +9,7 @@ pip install -r requirements.txt
 then run
 
 ```
-python skyrimdb/manage.py runserver
+python manage.py runserver
 ```
 
 ## Admin Access

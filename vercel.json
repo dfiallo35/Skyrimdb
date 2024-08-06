@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "skyrimdb/skyrimdb/wsgi.py",
+      "src": "skyrimdb/wsgi.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
@@ -13,11 +13,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "skyrimdb/skyrimdb/wsgi.py"
+      "dest": "skyrimdb/wsgi.py"
     },
     {
-      "src": "skyrimdb/static/(.*)",
-      "dest": "skyrimdb/static/$1"
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
     }
   ]
 }

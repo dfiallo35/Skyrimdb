@@ -6,5 +6,5 @@ pip install setuptools
 pip install -r requirements.txt
 
 echo "Make Migration..."
-python3.9 skyrimdb/manage.py makemigrations
-python3.9 skyrimdb/manage.py migrate
+python3.9 manage.py makemigrations
+python3.9 manage.py migrate

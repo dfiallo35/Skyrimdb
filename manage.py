@@ -20,3 +20,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+    print(sys.path)
+    # print all the files and folders on the root
+    print(os.listdir('/'))

@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "skyrimdb/wsgi.py",
@@ -11,17 +12,13 @@
     },
     {
       "src": "/static/*",
-      "use": "@now/static"
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "skyrimdb/wsgi.py"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
     }
   ]
 }

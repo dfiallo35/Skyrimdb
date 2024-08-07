@@ -13,6 +13,3 @@ urlpatterns = [
     path('tables/beasts', views.beasts, name='beasts'),
     path('tables/spells', views.spells, name='spells'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

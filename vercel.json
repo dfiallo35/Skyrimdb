@@ -8,6 +8,10 @@
         "runtime": "python3.12",
         "buildCommand": "bash setup.sh"
       }
+    },
+    {
+      "src": "/static/*",
+      "use": "@now/static"
     }
   ],
   "routes": [
